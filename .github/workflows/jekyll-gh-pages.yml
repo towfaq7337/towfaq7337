@@ -7,27 +7,8 @@
     <title>هدية مجانية</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f8ff;
-            color: #333;
-        }
-        .header {
-            background: linear-gradient(135deg, #4b6cb7, #182848);
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 28px;
-        }
-        .header p {
-            margin: 10px 0 0;
-            font-size: 16px;
-        }
+            
+    
         .gift-box {
             width: 150px;
             height: 150px;
